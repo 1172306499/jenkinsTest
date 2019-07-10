@@ -12,14 +12,14 @@ import java.util.Date;
  */
 @EnableScheduling
 public class tesk {
-
-    @Scheduled(fixedRate = 5000)
-    public void job1(){
-        System.out.println("定时任务1" + new Date());
-    }
-
-    @Scheduled(cron = "0/5 * * * * ?")
-    public void job2(){
-        System.out.println("定时任务2" + new Date());
-    }
+//
+//    @Scheduled(fixedRate = 5000)
+//    public void job1(){
+//        System.out.println("定时任务1" + new Date());
+//    }
+//
+//    @Scheduled(cron = "0/5 * * * * ?")
+//    public void job2(){
+//        System.out.println("定时任务2" + new Date());
+//    }
 }

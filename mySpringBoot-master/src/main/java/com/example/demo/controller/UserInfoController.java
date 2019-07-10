@@ -66,7 +66,7 @@ public class UserInfoController {
             @ApiImplicitParam(name = "size", value = "每页显示条数",
                     dataType = "Integer", paramType = "query")
     })
-    @PostMapping("/selectAll")
+    @RequestMapping("/selectAll")
     public RetResult<PageInfo<UserInfo>> selectAll(@RequestParam(defaultValue = "0") Integer page,
                                                    @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
