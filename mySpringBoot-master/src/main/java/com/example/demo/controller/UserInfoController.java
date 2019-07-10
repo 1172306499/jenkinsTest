@@ -4,6 +4,7 @@ import com.example.demo.core.aop.AnnotationLog;
 import com.example.demo.core.ret.RetResponse;
 import com.example.demo.core.ret.RetResult;
 import com.example.demo.core.ret.ServiceException;
+import com.example.demo.core.utils.HttpClientUtil;
 import com.example.demo.model.UserInfo;
 import com.example.demo.service.UserInfoService;
 import com.github.pagehelper.PageHelper;
@@ -19,6 +20,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -74,6 +80,16 @@ public class UserInfoController {
         PageInfo<UserInfo> pageInfo = new PageInfo<>(userInfoList);
         return RetResponse.makeOKRsp(pageInfo);
     }
+    
+    
+    @RequestMapping("/selectmsk")
+    public RetResult<PageInfo<UserInfo>> selectMsj(@RequestParam(defaultValue = "0") Integer page,
+                                                   @RequestParam(defaultValue = "0") Integer size) {
+    	String s="cs";
+	     s = HttpClientUtil.get("http://api.maerskline.com/maeu/products/futureschedules?atmosphere_app_id=rcewucoc-sVoIqBNPnQJG2hvLwdWBB6YSNW2ldbme7e4owZsN&from=10P4ZAYNLXXL3&to=0L3DBFFJ3KZ9A");
+    	System.out.println(s);
+        return RetResponse.makeRsp(200,s);
+    }
 
     @PostMapping("/selectAlla")
     public RetResult<PageInfo<UserInfo>> selectAlla(@RequestParam(defaultValue = "0") Integer page,
@@ -97,4 +113,12 @@ public class UserInfoController {
         return RetResponse.makeOKRsp(user);
     }
 
+    
+   
+    public static void main(String[] args) {
+    	
+		String s=	HttpClientUtil.get("http://api.maerskline.com/maeu/products/futureschedules?atmosphere_app_id=rcewucoc-sVoIqBNPnQJG2hvLwdWBB6YSNW2ldbme7e4owZsN&from=10P4ZAYNLXXL3&to=0L3DBFFJ3KZ9A");
+    	 System.out.println(s);
+    	
+	}
 }
